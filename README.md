@@ -1,135 +1,197 @@
-# SkillRise 2030+ 🚀
+# 🚀 SkillRise 2030+ Frontend
 
-Plataforma de aprendizado gamificada focada em preparar profissionais para o futuro do trabalho, desenvolvendo competências essenciais para 2030+.
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-Latest-purple.svg)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-cyan.svg)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 📋 Sobre o Projeto
+> Interface moderna e responsiva para plataforma de upskilling/reskilling gamificada com trilhas personalizadas, sistema de conquistas e tracking de progresso em tempo real.
 
-SkillRise 2030+ é uma plataforma educacional que oferece:
+---
 
-- **Trilhas de Aprendizado Personalizadas**: Caminhos estruturados em áreas como IA & Automação, Ciência de Dados, Soft Skills, Green Skills, Cybersegurança e Carreiras Digitais
-- **Sistema de Gamificação**: Badges, níveis, sequências diárias e progresso visual
-- **Dashboard Intuitivo**: Acompanhamento de progresso, atividades pendentes e conquistas
-- **Interface Moderna**: Design minimalista inspirado em Supabase e Alura
+## 📋 Sobre
+
+Frontend da plataforma **SkillRise 2030+** - solução React/TypeScript para preparar profissionais para o futuro do trabalho através de:
+
+- 🎨 **Design System minimalista** com tema light/dark
+- 🎮 **Gamificação visual** (XP, níveis, badges animados)
+- 📊 **Dashboard interativo** com gráficos de progresso
+- 🎓 **15 trilhas de aprendizado** com 50+ módulos
+- 🏆 **Sistema de conquistas** com animações GSAP
+- 📜 **Certificados digitais** verificáveis
+- 📱 **100% responsivo** (mobile-first)
+
+---
 
 ## 🎨 Design System
 
-- **Cor Principal**: Azul único (#3B82F6) como destaque
-- **Tipografia**: Figtree com títulos em UPPERCASE
-- **Estilo**: Minimalista com bordas reduzidas
-- **Temas**: Suporte a modo claro e escuro
+### Paleta de Cores
+- **Primária:** `hsl(217, 87%, 55%)` → `#2B7FDB` (Azul tech)
+- **Secundária:** `hsl(240, 5%, 26%)` (Cinza escuro)
+- **Accent:** Gradientes azul → roxo
+- **Background:** Branco / `#0A0A0A` (dark mode)
 
-## 🛠️ Tecnologias
+### Tipografia
+- **Fonte:** [Figtree](https://fonts.google.com/specimen/Figtree) (Google Fonts)
+- **Pesos:** 400, 500, 600, 700
 
-### Frontend
-- **React 18** com TypeScript
-- **Vite** para build rápido
-- **Tailwind CSS** para estilização
-- **shadcn/ui** para componentes
-- **React Router** para navegação
-- **TanStack Query** para gerenciamento de estado e cache
-- **Axios** para requisições HTTP
-- **next-themes** para tema claro/escuro
-- **GSAP** para animações profissionais minimalistas
+### Componentes
+- **shadcn/ui** - 40+ componentes prontos
+- **Animações GSAP** - Microinterações fluidas
+- **Ícones:** Lucide React
 
-### Backend (API REST)
-- **Spring Boot** (Java 17+)
-- **Spring Security** com JWT
-- **Oracle Database**
-- **JPA/Hibernate**
-- **Swagger/OpenAPI** para documentação
-- **Maven** para build
+### Favicon
+- **Arquivo:** `public/favicon.svg`
+- **Design:** Foguete/seta ascendente + estrela de conquista
+- **Cores:** Gradiente azul `#2B7FDB` → `#60A5FA`
+
+---
+
+## 🛠️ Stack Tecnológico
+
+### Core
+- **React 18.3** - Biblioteca UI
+- **TypeScript 5.6** - Tipagem estática
+- **Vite 6.0** - Build tool & dev server
+- **React Router 7.1** - Navegação SPA
+
+### UI & Styling
+- **TailwindCSS 3.4** - Utility-first CSS
+- **shadcn/ui** - Componentes acessíveis
+- **Radix UI** - Primitives para acessibilidade
+- **GSAP 3.12** - Animações avançadas
+- **Lucide React** - Ícones
+
+### HTTP & Data
+- **Axios 1.7** - Cliente HTTP
+- **React Query** (opcional) - Cache e sync
+
+### Dev Tools
+- **ESLint** - Linting
+- **TypeScript ESLint** - Regras TS
+- **PostCSS** - Transformações CSS
+- **Bun** - Package manager rápido
+
+---
+
+## 📦 Estrutura do Projeto
+
+```
+skillrise-2030/
+├── public/
+│   ├── favicon.svg           # Favicon com cores do projeto
+│   └── robots.txt
+├── src/
+│   ├── assets/              # Imagens, ícones, SVGs
+│   ├── components/
+│   │   ├── ui/             # 40+ componentes shadcn/ui
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   └── ...
+│   │   ├── Navbar.tsx      # Navegação principal
+│   │   └── NavLink.tsx     # Links ativos
+│   ├── pages/              # Páginas da aplicação
+│   │   ├── Index.tsx       # Landing page
+│   │   ├── Auth.tsx        # Login/Registro
+│   │   ├── Dashboard.tsx   # Painel do usuário
+│   │   ├── Trilhas.tsx     # Lista de trilhas
+│   │   ├── TrilhaDetalhes.tsx  # Detalhes + módulos
+│   │   ├── Perfil.tsx      # Perfil + conquistas
+│   │   └── NotFound.tsx    # Página 404
+│   ├── hooks/              # Custom React hooks
+│   │   ├── use-mobile.tsx  # Detecção mobile
+│   │   └── use-toast.ts    # Sistema de toasts
+│   ├── lib/
+│   │   └── utils.ts        # Helpers (cn, formatters)
+│   ├── App.tsx             # Componente raiz + rotas
+│   ├── main.tsx            # Entry point
+│   └── index.css           # CSS global + variáveis
+├── components.json          # Config shadcn/ui
+├── tailwind.config.ts       # Config TailwindCSS
+├── tsconfig.json            # Config TypeScript
+├── vite.config.ts           # Config Vite
+└── package.json
+```
+
+---
 
 ## 🚀 Como Executar
 
 ### Pré-requisitos
 
-- **Node.js 18+** e npm
-- **Java 17+** (para backend)
-- **Oracle Database** (local ou Docker)
-- **Maven** (incluído via wrapper)
+- **Node.js 18+** ([Download](https://nodejs.org/))
+- **Bun** (recomendado) ou npm/yarn
+- **Backend rodando** em `http://localhost:8080`
 
-### 🔧 Configuração Completa (Frontend + Backend)
-
-#### 1. Backend (API REST)
+### 1️⃣ Instalar Dependências
 
 ```bash
-# Navegar para pasta da API
-cd ../apirest
+# Com Bun (recomendado - mais rápido)
+bun install
 
-# Configurar Oracle Database em application.properties
-# Editar src/main/resources/application.properties:
-# spring.datasource.url=jdbc:oracle:thin:@localhost:1522:FREE
-# spring.datasource.username=system
-# spring.datasource.password=sua_senha
-
-# Iniciar aplicação Spring Boot
-./mvnw spring-boot:run
-
-# API estará em http://localhost:8080
-# Swagger UI: http://localhost:8080/swagger-ui.html
-```
-
-#### 2. Frontend (React)
-
-```sh
-# Já na pasta skillrise-2030
-
-# 1. Configure variáveis de ambiente
-cat > .env << EOF
-VITE_API_URL=http://localhost:8080
-EOF
-
-# 2. Instale as dependências
+# Ou com npm
 npm install
 
-# 3. Execute em desenvolvimento
-npm run dev
-
-# 4. Acesse no navegador
-# Frontend: http://localhost:5173
+# Ou com yarn
+yarn install
 ```
 
-### 🔗 Modo Integrado (Recomendado)
+### 2️⃣ Configurar Variáveis de Ambiente
 
-Para usar a aplicação completa com backend:
+Crie arquivo `.env` na raiz do projeto:
 
-1. **Inicie o backend primeiro** (veja seção Backend acima)
-2. **Inicie o frontend**
-3. **Acesse** http://localhost:5173
-4. **Crie uma conta** ou faça login
-5. **Navegue pelas trilhas** - dados virão da API real!
+```env
+VITE_API_URL=http://localhost:8080
+```
 
-### 📖 Documentação da Integração
+### 3️⃣ Executar Backend (API REST)
 
-Para detalhes completos sobre a integração backend-frontend, endpoints disponíveis, autenticação JWT e troubleshooting, consulte:
+Certifique-se de que o backend Spring Boot está rodando:
 
-**[INTEGRATION.md](./INTEGRATION.md)** - Guia completo de integração
+```bash
+cd ../apirest
+./mvnw spring-boot:run
+```
+
+✅ Backend deve estar em: `http://localhost:8080`
+
+### 4️⃣ Executar Frontend
+
+```bash
+# Com Bun (dev server rápido)
+bun dev
+
+# Ou com npm
+npm run dev
+
+# Ou com yarn
+yarn dev
+```
+
+✅ Frontend disponível em: `http://localhost:5173`
 
 ---
 
-## 📦 Scripts Disponíveis
+## 📜 Scripts Disponíveis
 
 ```bash
-# 1. Entre no diretório (se necessário)
-cd skillrise-2030
+# Desenvolvimento
+bun dev              # Inicia dev server com hot reload
+npm run dev          # Alternativa com npm
 
-# 3. Instale as dependências
-npm install
+# Build
+bun run build        # Gera build de produção em /dist
+npm run build        # TypeScript check + Vite build
 
-# 4. Execute em modo desenvolvimento
-npm run dev
-```
+# Preview
+bun run preview      # Visualiza build localmente
+npm run preview      # Testa antes do deploy
 
-O projeto estará disponível em `http://localhost:5173`
-
-### Build para Produção
-
-```sh
-# Build otimizado
-npm run build
-
-# Preview da build
-npm run preview
+# Linting
+bun run lint         # ESLint para verificar código
+npm run lint         # Encontra erros e bad practices
 ```
 
 ## 📁 Estrutura do Projeto
@@ -177,21 +239,6 @@ src/
 - [x] Navbar responsiva com estado de autenticação
 - [x] Build sem erros TypeScript
 
-### 🎨 Sistema de Animações
-
-O projeto utiliza **GSAP** (GreenSock Animation Platform) com uma abordagem minimalista:
-
-- **useStaggerAnimation**: Stagger sutil em listas (0.08s delay, 0.4s duration)
-- **useFadeIn**: Fade-in suave para seções (0.5s duration)
-- **useScaleIn**: Scale-in discreto para cards (0.4s duration)
-
-Todas as animações usam `power2.out` easing e movimentos mínimos (20px vertical offset, 0.95 scale) para manter a elegância do design.
-
-### 🔄 Warnings Restantes
-
-- Apenas 9 warnings de `react-refresh/only-export-components` (não críticos)
-- Todos relacionados a componentes do shadcn/ui que exportam constantes auxiliares
-
 ## 🎯 Próximos Passos Sugeridos
 
 1. **Backend Integration**: Conectar com API real para autenticação e dados
@@ -225,22 +272,8 @@ npm run preview    # Preview da build de produção
 npm run lint       # Executa linter
 ```
 
-## 🤝 Contribuindo
-
-1. Faça fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
 ## 📄 Licença
 
 Este projeto é parte do Global Solution da FIAP - 2ESPW
 
-## 👥 Equipe
-
-Desenvolvido para o curso de Engenharia de Software da FIAP
-
 ---
-
-**SkillRise 2030+** - Preparando você para o futuro do trabalho 🚀
