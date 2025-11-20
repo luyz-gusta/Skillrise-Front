@@ -11,8 +11,7 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { Badge } from './ui/badge';
-import * as notificacaoService from '../services/notificacaoService';
-import { Notificacao } from '../services/notificacaoService';
+import { notificacaoService, Notificacao } from '../services/notificacaoService';
 
 interface NotificationBellProps {
   userId: number;
@@ -32,10 +31,13 @@ export default function NotificationBell({ userId }: NotificationBellProps) {
         notificacaoService.findNaoLidas(userId),
         notificacaoService.contarNaoLidas(userId),
       ]);
-      setNotificacoes(naoLidas.slice(0, 5)); // Apenas as 5 mais recentes
-      setCount(totalNaoLidas);
+      setNotificacoes(naoLidas?.slice(0, 5) || []); // Apenas as 5 mais recentes
+      setCount(totalNaoLidas || 0);
     } catch (error) {
       console.error('Erro ao buscar notificações:', error);
+      // Define valores padrão em caso de erro da API
+      setNotificacoes([]);
+      setCount(0);
     }
   };
 

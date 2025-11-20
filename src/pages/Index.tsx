@@ -6,7 +6,8 @@ import { useStaggerAnimation, useFadeIn } from "@/hooks/useGsapAnimations";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQuery } from "@tanstack/react-query";
-import * as statsService from "@/services/statsService";
+import { statsService, PlatformStats } from "@/services/statsService";
+import { Trilha } from "@/services/trilhaService";
 import {
   Brain,
   Target,
@@ -45,14 +46,14 @@ const Index = () => {
   const trilhasRef = useStaggerAnimation();
 
   // Buscar estatísticas da plataforma
-  const { data: stats } = useQuery({
+  const { data: stats } = useQuery<PlatformStats>({
     queryKey: ['platformStats'],
     queryFn: statsService.getPlatformStats,
     staleTime: 10 * 60 * 1000, // 10 minutos
   });
 
   // Buscar trilhas em destaque
-  const { data: trilhasDestaqueData = [], isLoading: isLoadingTrilhas } = useQuery({
+  const { data: trilhasDestaqueData = [], isLoading: isLoadingTrilhas } = useQuery<Trilha[]>({
     queryKey: ['trilhasDestaque'],
     queryFn: () => statsService.getTrilhasDestaque(8),
     staleTime: 5 * 60 * 1000, // 5 minutos
@@ -209,13 +210,13 @@ const Index = () => {
                 <TrilhaCard
                   key={trilha.trilhaId}
                   id={trilha.trilhaId}
-                  title={trilha.nome}
-                  description={trilha.descricao}
-                  icon={iconMap[trilha.categoria] || Brain}
-                  duration={`${Math.ceil(trilha.duracaoHoras / 4)} semanas`}
-                  level={trilha.nivel}
-                  modules={trilha.totalModulos || 8}
-                  image={imageMap[trilha.categoria] || trilha.imagemUrl}
+                  title={trilha.title}
+                  description={trilha.description}
+                  icon={Brain}
+                  duration={`${Math.ceil(trilha.durationHours / 4)} semanas`}
+                  level={trilha.difficulty}
+                  modules={8}
+                  image={trilha.imageUrl}
                 />
               ))}
             </div>

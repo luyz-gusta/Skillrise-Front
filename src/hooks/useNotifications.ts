@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import * as achievementService from '@/services/achievementService';
-import * as notificacaoService from '@/services/notificacaoService';
+import { achievementService } from '@/services/achievementService';
+import { notificacaoService } from '@/services/notificacaoService';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 

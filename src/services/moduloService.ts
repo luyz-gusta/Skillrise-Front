@@ -4,6 +4,7 @@ import api from '@/services/api';
 export interface Modulo {
   moduloId: number;
   title: string;
+  description?: string;
   durationMinutes: number;
   contentType: string;
   createdAt: string;

@@ -14,9 +14,9 @@ import { progressoService } from "@/services/progressoService";
 import { trilhaService } from "@/services/trilhaService";
 import { moduloService } from "@/services/moduloService";
 import { userService } from "@/services/userService";
-import * as metaService from "@/services/metaService";
-import * as statsService from "@/services/statsService";
-import * as achievementService from "@/services/achievementService";
+import { metaService } from "@/services/metaService";
+import { statsService } from "@/services/statsService";
+import { achievementService } from "@/services/achievementService";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNotificationRefresh } from "@/hooks/useNotifications";
 import {
@@ -94,7 +94,15 @@ const Dashboard = () => {
   // Buscar metas do usuário
   const { data: metas = [] } = useQuery({
     queryKey: ['metas', user?.userId],
-    queryFn: () => metaService.findByUserId(user!.userId),
+    queryFn: async () => {
+      try {
+        const result = await metaService.findByUserId(user!.userId);
+        return result || [];
+      } catch (error) {
+        console.error('Erro ao buscar metas:', error);
+        return [];
+      }
+    },
     enabled: !!user?.userId,
     staleTime: 2 * 60 * 1000,
   });
@@ -102,7 +110,15 @@ const Dashboard = () => {
   // Buscar conquistas do usuário
   const { data: achievements = [] } = useQuery({
     queryKey: ['achievements', user?.userId],
-    queryFn: () => achievementService.findByUserId(user!.userId),
+    queryFn: async () => {
+      try {
+        const result = await achievementService.findByUserId(user!.userId);
+        return result || [];
+      } catch (error) {
+        console.error('Erro ao buscar achievements:', error);
+        return [];
+      }
+    },
     enabled: !!user?.userId,
     staleTime: 2 * 60 * 1000,
   });
@@ -311,7 +327,7 @@ const Dashboard = () => {
                       </div>
                     </div>
 
-                    <Link to={`/trilha/${trilhaAtual.trilha.trilhaId}`} className="block pt-2">
+                    <Link to={`/trilhas/${trilhaAtual.trilha.trilhaId}`} className="block pt-2">
                       <Button className="w-full">
                         Continuar Aprendendo
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -340,26 +356,46 @@ const Dashboard = () => {
                   </Card>
 
                   {/* Trilhas Recomendadas */}
-                  {trilhasDestaque.length > 0 && (
-                    <div>
-                      <h3 className="text-xl font-bold mb-4 uppercase">Trilhas Recomendadas</h3>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4 uppercase">Trilhas Recomendadas</h3>
+                    {trilhasDestaque.length > 0 ? (
                       <div className="grid md:grid-cols-3 gap-6">
                         {trilhasDestaque.map((trilha) => (
                           <TrilhaCard
                             key={trilha.trilhaId}
                             id={trilha.trilhaId}
-                            title={trilha.nome}
-                            description={trilha.descricao}
+                            title={trilha.title}
+                            description={trilha.description}
                             icon={Brain}
-                            duration={`${Math.ceil(trilha.duracaoHoras / 4)} semanas`}
-                            level={trilha.nivel}
-                            modules={trilha.totalModulos || 8}
-                            image={trilha.imagemUrl}
+                            duration={`${Math.ceil(trilha.durationHours / 4)} semanas`}
+                            level={trilha.difficulty}
+                            modules={8}
+                            image={trilha.imageUrl}
                           />
                         ))}
                       </div>
-                    </div>
-                  )}
+                    ) : (
+                      <Card className="p-8 border-border border-dashed">
+                        <div className="text-center space-y-4">
+                          <div className="w-16 h-16 rounded-lg bg-muted mx-auto flex items-center justify-center">
+                            <BookOpen className="h-8 w-8 text-muted-foreground" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold mb-2">Explore nossa biblioteca</h4>
+                            <p className="text-muted-foreground text-sm mb-4">
+                              Descubra trilhas personalizadas para desenvolver as competências do futuro
+                            </p>
+                            <Link to="/trilhas">
+                              <Button variant="outline">
+                                <BookOpen className="mr-2 h-4 w-4" />
+                                Ver Todas as Trilhas
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </Card>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -368,9 +404,9 @@ const Dashboard = () => {
             {/* Sidebar */}
             <div className="space-y-8">
               {/* Conquistas Recentes */}
-              {achievements.length > 0 && (
-                <div>
-                  <h3 className="text-xl font-bold mb-4 uppercase">Conquistas Recentes</h3>
+              <div>
+                <h3 className="text-xl font-bold mb-4 uppercase">Conquistas Recentes</h3>
+                {achievements.length > 0 ? (
                   <div ref={activitiesRef} className="space-y-3">
                     {achievements.slice(0, 3).map((achievement) => (
                       <Card key={achievement.achievementId} className="p-4 border-border">
@@ -386,13 +422,27 @@ const Dashboard = () => {
                       </Card>
                     ))}
                   </div>
-                </div>
-              )}
+                ) : (
+                  <Card className="p-6 border-border border-dashed">
+                    <div className="text-center space-y-3">
+                      <div className="w-12 h-12 rounded-lg bg-muted mx-auto flex items-center justify-center">
+                        <Award className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm">Nenhuma conquista ainda</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Complete trilhas e desafios para desbloquear badges
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                )}
+              </div>
 
               {/* Metas do Usuário */}
-              {metas.length > 0 && (
-                <div>
-                  <h3 className="text-xl font-bold mb-4 uppercase">Metas</h3>
+              <div>
+                <h3 className="text-xl font-bold mb-4 uppercase">Metas</h3>
+                {metas.length > 0 ? (
                   <div className="space-y-3">
                     {metas.map((meta) => {
                       const atingida = meta.progresso >= 100;
@@ -432,8 +482,26 @@ const Dashboard = () => {
                       );
                     })}
                   </div>
-                </div>
-              )}
+                ) : (
+                  <Card className="p-6 border-border border-dashed">
+                    <div className="text-center space-y-3">
+                      <div className="w-12 h-12 rounded-lg bg-muted mx-auto flex items-center justify-center">
+                        <Target className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm">Nenhuma meta definida</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Defina metas para acompanhar seu progresso
+                        </p>
+                      </div>
+                      <Button size="sm" variant="outline" className="mt-2">
+                        <Target className="mr-2 h-4 w-4" />
+                        Criar Meta
+                      </Button>
+                    </div>
+                  </Card>
+                )}
+              </div>
             </div>
           </div>
         </div>

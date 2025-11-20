@@ -1,10 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { CheckCircle2, PlayCircle, Lock, Loader2 } from "lucide-react";
 
 interface ModuloCardProps {
   id: number;
+  trilhaId: number;
   title: string;
   aulas: number;
   duration: string;
@@ -18,6 +20,7 @@ interface ModuloCardProps {
 
 export const ModuloCard = ({
   id,
+  trilhaId,
   title,
   aulas,
   duration,
@@ -28,13 +31,22 @@ export const ModuloCard = ({
   isUpdating = false,
   inscricaoId,
 }: ModuloCardProps) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    if (!locked && inscricaoId) {
+      navigate(`/trilhas/${trilhaId}/modulos/${id}`);
+    }
+  };
+
   return (
     <Card
+      onClick={handleCardClick}
       className={`p-6 border-border transition-colors ${
         current
           ? "border-primary/50"
           : "hover:border-primary/30"
-      } ${locked ? "opacity-60" : "cursor-pointer"}`}
+      } ${locked ? "opacity-60" : inscricaoId ? "cursor-pointer" : ""}`}
     >
       <div className="flex items-start gap-4">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
@@ -70,7 +82,10 @@ export const ModuloCard = ({
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => onComplete(id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onComplete(id);
+                  }}
                   disabled={isUpdating}
                 >
                   {isUpdating ? (

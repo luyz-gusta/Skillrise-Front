@@ -80,7 +80,7 @@ export const TrilhaCard = ({
           </div>
         </div>
 
-        <Link to={`/trilha/${id}`} className="block pt-2">
+        <Link to={`/trilhas/${id}`} className="block pt-2">
           <Button className="w-full" variant="outline">
             Ver Trilha
             <ArrowRight className="ml-2 h-4 w-4" />

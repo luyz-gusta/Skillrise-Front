@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Trilhas from "./pages/Trilhas";
 import TrilhaDetalhes from "./pages/TrilhaDetalhes";
+import Modulo from "./pages/Modulo";
 import Dashboard from "./pages/Dashboard";
 import Perfil from "./pages/Perfil";
 import NotFound from "./pages/NotFound";
@@ -27,7 +28,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/trilhas" element={<Trilhas />} />
-              <Route path="/trilha/:id" element={<TrilhaDetalhes />} />
+              <Route path="/trilhas/:id" element={<TrilhaDetalhes />} />
+              <Route path="/trilhas/:trilhaId/modulos/:moduloId" element={<Modulo />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/perfil" element={<Perfil />} />
               <Route path="*" element={<NotFound />} />

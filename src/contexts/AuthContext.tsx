@@ -63,7 +63,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       
       // Criar objeto de usuário
       const userData: User = {
-        id: response.data.userId,
+        userId: response.data.userId,
+        id: response.data.userId, // Mantido para compatibilidade
         name: response.data.name,
         email: response.data.email,
         role: response.data.role,
@@ -102,7 +103,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       
       // Criar objeto de usuário
       const userData: User = {
-        id: response.data.userId,
+        userId: response.data.userId,
+        id: response.data.userId, // Mantido para compatibilidade
         name: response.data.name,
         email: response.data.email,
         role: response.data.role,
