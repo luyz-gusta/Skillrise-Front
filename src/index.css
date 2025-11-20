@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* SkillRise 2030+ Design System - Minimalist - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+
+    /* Primary: Azul único como cor de destaque */
+    --primary: 217 87% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Tom neutro suave */
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 15% 20%;
+
+    /* Muted: Cinza suave */
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 50%;
+
+    /* Accent: Usa o primary para manter minimalismo */
+    --accent: 220 15% 96%;
+    --accent-foreground: 220 15% 20%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 92%;
+    --input: 220 15% 96%;
+    --ring: 217 87% 55%;
+
+    --radius: 0.5rem;
+
+    /* Status Colors apenas */
+    --success: 158 64% 52%;
+    --warning: 44 87% 63%;
+    --info: 217 87% 55%;
+
+    /* Shadow minimalista */
+    --shadow-sm: 0 1px 2px 0 hsl(220 15% 20% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(220 15% 20% / 0.1);
+  }
+
+  .dark {
+    /* SkillRise 2030+ Design System - Minimalist - Dark Mode */
+    --background: 220 20% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217 87% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 15% 16%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 220 15% 16%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 16%;
+    --ring: 217 87% 55%;
+
+    --success: 158 64% 52%;
+    --warning: 44 87% 63%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Transições suaves para hover */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- SkillRise 2030+ - Design minimalista com cores do projeto -->
+  <defs>
+    <!-- Gradiente com azul principal do projeto (hsl(217, 87%, 55%)) -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2B7FDB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E5FA8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3A91EC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2B7FDB;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle com azul principal -->
+  <circle cx="50" cy="50" r="48" fill="url(#primaryGrad)"/>
+  
+  <!-- Seta/Foguete simbolizando crescimento e progresso -->
+  <path d="M 50 20 L 65 45 L 55 45 L 55 70 L 45 70 L 45 45 L 35 45 Z" 
+        fill="white" 
+        stroke="white" 
+        stroke-width="2" 
+        stroke-linejoin="round"/>
+  
+  <!-- Estrela minimalista simbolizando conquista/achievement -->
+  <path d="M 50 10 L 52 16 L 58 16 L 53 20 L 55 26 L 50 22 L 45 26 L 47 20 L 42 16 L 48 16 Z" 
+        fill="#F5C842" 
+        stroke="#E5B732" 
+        stroke-width="0.5"/>
+  
+  <!-- Base/plataforma com gradiente secundário -->
+  <rect x="30" y="70" width="40" height="4" rx="2" fill="url(#accentGrad)"/>
+  
+  <!-- Detalhes minimalistas: pequenos pontos representando progresso -->
+  <circle cx="38" cy="58" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="50" cy="58" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="62" cy="58" r="1.5" fill="white" opacity="0.6"/>
+</svg>
